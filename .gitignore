@@ -18,6 +18,11 @@
 /apache2/ssl/*.csr
 /apache2/ssl/*.org
 
+/workspace/ca-certificates/*.crt
+/workspace/ca-certificates/*.key
+/workspace/ca-certificates/*.pem
+/workspace/ca-certificates/*.org
+
 /.devcontainer/*
 !/.devcontainer/devcontainer.example.json
 !/.devcontainer/docker-compose.extend-example.yml

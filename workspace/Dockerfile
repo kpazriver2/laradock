@@ -38,6 +38,18 @@ RUN if [ ${CHANGE_SOURCE} = true ]; then \
   fi;
 
 ###########################################################################
+# Replace Ondrej PPA (ppa.launchpadcontent.net unreachable on some networks)
+# with packages.sury.org which uses Cloudflare CDN and is globally reachable.
+###########################################################################
+RUN rm -f /etc/apt/sources.list.d/ppa_ondrej_php.list \
+    /etc/apt/sources.list.d/ondrej-ubuntu-php-*.list \
+    && mkdir -p /etc/apt/keyrings \
+    && curl -sSL https://packages.sury.org/php/apt.gpg | gpg --dearmor | tee /etc/apt/keyrings/sury_php.gpg > /dev/null \
+    && echo "deb [signed-by=/etc/apt/keyrings/sury_php.gpg] https://packages.sury.org/php/ jammy main" \
+       > /etc/apt/sources.list.d/sury_php.list \
+    && apt-get update -y
+
+###########################################################################
 # Laradock non-root user:
 ###########################################################################
 
@@ -775,6 +787,7 @@ ARG INSTALL_NPM_ANGULAR_CLI=false
 ARG INSTALL_NPM_CHECK_UPDATES_CLI=false
 ARG NPM_REGISTRY
 ENV NPM_REGISTRY ${NPM_REGISTRY}
+
 ARG NPM_FETCH_RETRIES
 ENV NPM_FETCH_RETRIES ${NPM_FETCH_RETRIES}
 ARG NPM_FETCH_RETRY_FACTOR

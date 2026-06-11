@@ -802,7 +802,7 @@ ENV NVM_NODEJS_ORG_MIRROR ${NVM_NODEJS_ORG_MIRROR}
 ARG NVM_INSTALL_CURL_INSECURE=false
 ENV NVM_INSTALL_CURL_INSECURE ${NVM_INSTALL_CURL_INSECURE}
 
-RUN if [ ${INSTALL_NODE} = true ]; then \
+RUN if [ "${INSTALL_NODE}" = "true" ]; then \
     # Install nvm (A Node Version Manager)
     mkdir -p $NVM_DIR && \
     if [ "${NVM_INSTALL_CURL_INSECURE}" = "true" ]; then \
@@ -819,29 +819,29 @@ RUN if [ ${INSTALL_NODE} = true ]; then \
         && npm config set fetch-retry-factor ${NPM_FETCH_RETRY_FACTOR} \
         && npm config set fetch-retry-mintimeout ${NPM_FETCH_RETRY_MINTIMEOUT} \
         && npm config set fetch-retry-maxtimeout ${NPM_FETCH_RETRY_MAXTIMEOUT} \
-        && if [ ${NPM_REGISTRY} ]; then \
+        && if [ -n "${NPM_REGISTRY}" ]; then \
         npm config set registry ${NPM_REGISTRY} \
         ;fi \
-        && if [ ${INSTALL_NPM_GULP} = true ]; then \
+        && if [ "${INSTALL_NPM_GULP}" = "true" ]; then \
         npm install -g gulp \
         ;fi \
-        && if [ ${INSTALL_NPM_BOWER} = true ]; then \
+        && if [ "${INSTALL_NPM_BOWER}" = "true" ]; then \
         npm install -g bower \
         ;fi \
-        && if [ ${INSTALL_NPM_VUE_CLI} = true ]; then \
+        && if [ "${INSTALL_NPM_VUE_CLI}" = "true" ]; then \
         npm install -g @vue/cli \
         ;fi \
-        && if [ ${INSTALL_NPM_ANGULAR_CLI} = true ]; then \
+        && if [ "${INSTALL_NPM_ANGULAR_CLI}" = "true" ]; then \
         npm install -g @angular/cli \
         ;fi \
-        && if [ ${INSTALL_NPM_CHECK_UPDATES_CLI} = true ]; then \
+        && if [ "${INSTALL_NPM_CHECK_UPDATES_CLI}" = "true" ]; then \
         npm install -g npm-check-updates \
         ;fi \
 ;fi
 
 # Wouldn't execute when added to the RUN statement in the above block
 # Source NVM when loading bash since ~/.profile isn't loaded on non-login shell
-RUN if [ ${INSTALL_NODE} = true ]; then \
+RUN if [ "${INSTALL_NODE}" = "true" ]; then \
     echo "" >> ~/.bashrc && \
     echo 'export NVM_DIR="$HOME/.nvm"' >> ~/.bashrc && \
     echo '[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm' >> ~/.bashrc \
@@ -850,7 +850,7 @@ RUN if [ ${INSTALL_NODE} = true ]; then \
 # Add NVM binaries to root's .bashrc
 USER root
 
-RUN if [ ${INSTALL_NODE} = true ]; then \
+RUN if [ "${INSTALL_NODE}" = "true" ]; then \
     echo "" >> ~/.bashrc && \
     echo 'export NVM_DIR="/home/laradock/.nvm"' >> ~/.bashrc && \
     echo '[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm' >> ~/.bashrc \
@@ -858,7 +858,7 @@ RUN if [ ${INSTALL_NODE} = true ]; then \
 
 # Make it so the node modules can be executed with 'docker-compose exec'
 # We'll create symbolic links into '/usr/local/bin'.
-RUN if [ ${INSTALL_NODE} = true ]; then \
+RUN if [ "${INSTALL_NODE}" = "true" ]; then \
     find $NVM_DIR -type f -name node -exec ln -s {} /usr/local/bin/node \; && \
     NODE_MODS_DIR="$NVM_DIR/versions/node/$(node -v)/lib/node_modules" && \
     ln -s $NODE_MODS_DIR/bower/bin/bower /usr/local/bin/bower && \
@@ -870,7 +870,7 @@ RUN if [ ${INSTALL_NODE} = true ]; then \
     ln -s $NODE_MODS_DIR/vue-cli/bin/vue-list /usr/local/bin/vue-list \
 ;fi
 
-RUN if [ ${NPM_REGISTRY} ]; then \
+RUN if [ -n "${NPM_REGISTRY}" ]; then \
     . ~/.bashrc && npm config set registry ${NPM_REGISTRY} \
 ;fi
 

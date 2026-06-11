@@ -390,9 +390,9 @@ RUN if [ ${INSTALL_MONGO} = true ]; then \
         fi; \
       else \
         if [ $(php -r "echo PHP_MAJOR_VERSION;") = "8" ] && [ $(php -r "echo PHP_MINOR_VERSION;") = "0" ]; then \
-            pecl install mongodb-1.20.1; \
+            pecl install mongodb-1.21.0; \
         else \
-            pecl install mongodb-1.15.3; \
+            pecl install mongodb-1.21.0; \
         fi; \
       fi; \
       docker-php-ext-enable mongodb; \

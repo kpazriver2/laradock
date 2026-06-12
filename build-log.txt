@@ -1,0 +1,521 @@
+--progress is a global compose flag, better use `docker compose --progress xx build ...
+ Image laradock-php-fpm Building 
+ Image laradock-workspace Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 9.12kB done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from Dockerfile
+#2 transferring dockerfile: 53.07kB 0.0s done
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/laradock/php-fpm:latest-8.2
+#3 DONE 0.1s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 DONE 0.0s
+
+#6 [ 1/84] FROM docker.io/laradock/php-fpm:latest-8.2@sha256:2cf98f0b708dc6bca85e9efa547b7341c076c2ed8e5b49f23662d5cf4536713d
+#6 resolve docker.io/laradock/php-fpm:latest-8.2@sha256:2cf98f0b708dc6bca85e9efa547b7341c076c2ed8e5b49f23662d5cf4536713d 0.0s done
+#6 CACHED
+
+#5 [internal] load build context
+#5 transferring context: 132B done
+#5 DONE 0.0s
+
+#7 [ 2/84] RUN if [ false = true ]; then     sed -i 's/deb.debian.org/mirrors.tuna.tsinghua.edu.cn/' /etc/apt/sources.list &&     sed -i 's/security.debian.org/mirrors.tuna.tsinghua.edu.cn/' /etc/apt/sources.list &&     sed -i 's/security-cdn.debian.org/mirrors.tuna.tsinghua.edu.cn/' /etc/apt/sources.list ;fi
+#7 DONE 0.5s
+
+#8 [ 3/84] RUN if [ "8.2" = "7.1" ] || [ 8.2 = "7.2" ]; then     sed -i       -e 's|deb.debian.org|archive.debian.org|g'       -e 's|security.debian.org|archive.debian.org|g'       -e '/buster-updates/d'       /etc/apt/sources.list; fi
+#8 DONE 0.6s
+
+#9 [ 4/84] RUN set -xe;     apt-get update -yqq &&     pecl channel-update pecl.php.net &&     apt-get install -yqq       apt-utils       gnupg2       git       libzip-dev zip unzip &&       if [ 8.2 = "7.3" ] || [ 8.2 = "7.4" ] || [ $(php -r "echo PHP_MAJOR_VERSION;") = "8" ]; then         docker-php-ext-configure zip;       else         docker-php-ext-configure zip --with-libzip;       fi &&       docker-php-ext-install zip &&       php -m | grep -q 'zip'
+#9 0.405 + apt-get update -yqq
+#9 16.88 + pecl channel-update pecl.php.net
+#9 16.96 Updating channel "pecl.php.net"
+#9 17.83 Channel "pecl.php.net" is up to date
+#9 17.83 + apt-get install -yqq apt-utils gnupg2 git libzip-dev zip unzip
+#9 47.37 Selecting previously unselected package libexpat1:amd64.
+#9 47.37 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 16194 files and directories currently installed.)
+#9 47.45 Preparing to unpack .../00-libexpat1_2.7.1-2_amd64.deb ...
+#9 47.47 Unpacking libexpat1:amd64 (2.7.1-2) ...
+#9 47.54 Selecting previously unselected package apt-utils.
+#9 47.54 Preparing to unpack .../01-apt-utils_3.0.3_amd64.deb ...
+#9 47.55 Unpacking apt-utils (3.0.3) ...
+#9 47.63 Selecting previously unselected package less.
+#9 47.63 Preparing to unpack .../02-less_668-1_amd64.deb ...
+#9 47.64 Unpacking less (668-1) ...
+#9 47.73 Selecting previously unselected package libedit2:amd64.
+#9 47.74 Preparing to unpack .../03-libedit2_3.1-20250104-1_amd64.deb ...
+#9 47.74 Unpacking libedit2:amd64 (3.1-20250104-1) ...
+#9 47.83 Selecting previously unselected package libcbor0.10:amd64.
+#9 47.83 Preparing to unpack .../04-libcbor0.10_0.10.2-2_amd64.deb ...
+#9 47.84 Unpacking libcbor0.10:amd64 (0.10.2-2) ...
+#9 47.92 Selecting previously unselected package libfido2-1:amd64.
+#9 47.92 Preparing to unpack .../05-libfido2-1_1.15.0-1+b1_amd64.deb ...
+#9 47.93 Unpacking libfido2-1:amd64 (1.15.0-1+b1) ...
+#9 48.02 Selecting previously unselected package openssh-client.
+#9 48.02 Preparing to unpack .../06-openssh-client_1%3a10.0p1-7+deb13u4_amd64.deb ...
+#9 48.05 Unpacking openssh-client (1:10.0p1-7+deb13u4) ...
+#9 48.18 Preparing to unpack .../07-curl_8.14.1-2+deb13u3_amd64.deb ...
+#9 48.21 Unpacking curl (8.14.1-2+deb13u3) over (8.14.1-2+deb13u2) ...
+#9 48.38 Preparing to unpack .../08-libcurl4t64_8.14.1-2+deb13u3_amd64.deb ...
+#9 48.41 Unpacking libcurl4t64:amd64 (8.14.1-2+deb13u3) over (8.14.1-2+deb13u2) ...
+#9 48.53 Selecting previously unselected package libgpg-error0:amd64.
+#9 48.54 Preparing to unpack .../09-libgpg-error0_1.51-4_amd64.deb ...
+#9 48.55 Unpacking libgpg-error0:amd64 (1.51-4) ...
+#9 48.65 Selecting previously unselected package libassuan9:amd64.
+#9 48.66 Preparing to unpack .../10-libassuan9_3.0.2-2_amd64.deb ...
+#9 48.67 Unpacking libassuan9:amd64 (3.0.2-2) ...
+#9 48.79 Selecting previously unselected package libgcrypt20:amd64.
+#9 48.79 Preparing to unpack .../11-libgcrypt20_1.11.0-7+deb13u1_amd64.deb ...
+#9 48.81 Unpacking libgcrypt20:amd64 (1.11.0-7+deb13u1) ...
+#9 48.92 Selecting previously unselected package gpgconf.
+#9 48.93 Preparing to unpack .../12-gpgconf_2.4.7-21+deb13u1+b3_amd64.deb ...
+#9 48.94 Unpacking gpgconf (2.4.7-21+deb13u1+b3) ...
+#9 49.02 Selecting previously unselected package libksba8:amd64.
+#9 49.02 Preparing to unpack .../13-libksba8_1.6.7-2+b1_amd64.deb ...
+#9 49.03 Unpacking libksba8:amd64 (1.6.7-2+b1) ...
+#9 49.12 Selecting previously unselected package libnpth0t64:amd64.
+#9 49.12 Preparing to unpack .../14-libnpth0t64_1.8-3_amd64.deb ...
+#9 49.13 Unpacking libnpth0t64:amd64 (1.8-3) ...
+#9 49.20 Selecting previously unselected package dirmngr.
+#9 49.21 Preparing to unpack .../15-dirmngr_2.4.7-21+deb13u1+b3_amd64.deb ...
+#9 49.23 Unpacking dirmngr (2.4.7-21+deb13u1+b3) ...
+#9 49.33 Selecting previously unselected package libngtcp2-16:amd64.
+#9 49.33 Preparing to unpack .../16-libngtcp2-16_1.11.0-1+deb13u1_amd64.deb ...
+#9 49.34 Unpacking libngtcp2-16:amd64 (1.11.0-1+deb13u1) ...
+#9 49.42 Selecting previously unselected package libngtcp2-crypto-gnutls8:amd64.
+#9 49.42 Preparing to unpack .../17-libngtcp2-crypto-gnutls8_1.11.0-1+deb13u1_amd64.deb ...
+#9 49.43 Unpacking libngtcp2-crypto-gnutls8:amd64 (1.11.0-1+deb13u1) ...
+#9 49.54 Selecting previously unselected package libcurl3t64-gnutls:amd64.
+#9 49.54 Preparing to unpack .../18-libcurl3t64-gnutls_8.14.1-2+deb13u3_amd64.deb ...
+#9 49.55 Unpacking libcurl3t64-gnutls:amd64 (8.14.1-2+deb13u3) ...
+#9 49.68 Selecting previously unselected package liberror-perl.
+#9 49.69 Preparing to unpack .../19-liberror-perl_0.17030-1_all.deb ...
+#9 49.70 Unpacking liberror-perl (0.17030-1) ...
+#9 49.77 Selecting previously unselected package git-man.
+#9 49.78 Preparing to unpack .../20-git-man_1%3a2.47.3-0+deb13u1_all.deb ...
+#9 49.79 Unpacking git-man (1:2.47.3-0+deb13u1) ...
+#9 49.93 Selecting previously unselected package git.
+#9 49.93 Preparing to unpack .../21-git_1%3a2.47.3-0+deb13u1_amd64.deb ...
+#9 49.94 Unpacking git (1:2.47.3-0+deb13u1) ...
+#9 50.34 Selecting previously unselected package gnupg-l10n.
+#9 50.34 Preparing to unpack .../22-gnupg-l10n_2.4.7-21+deb13u1_all.deb ...
+#9 50.35 Unpacking gnupg-l10n (2.4.7-21+deb13u1) ...
+#9 50.45 Selecting previously unselected package gpg.
+#9 50.46 Preparing to unpack .../23-gpg_2.4.7-21+deb13u1+b3_amd64.deb ...
+#9 50.47 Unpacking gpg (2.4.7-21+deb13u1+b3) ...
+#9 50.56 Selecting previously unselected package libncursesw6:amd64.
+#9 50.56 Preparing to unpack .../24-libncursesw6_6.5+20250216-2_amd64.deb ...
+#9 50.57 Unpacking libncursesw6:amd64 (6.5+20250216-2) ...
+#9 50.63 Selecting previously unselected package pinentry-curses.
+#9 50.64 Preparing to unpack .../25-pinentry-curses_1.3.1-2_amd64.deb ...
+#9 50.64 Unpacking pinentry-curses (1.3.1-2) ...
+#9 50.72 Selecting previously unselected package gpg-agent.
+#9 50.72 Preparing to unpack .../26-gpg-agent_2.4.7-21+deb13u1+b3_amd64.deb ...
+#9 50.73 Unpacking gpg-agent (2.4.7-21+deb13u1+b3) ...
+#9 50.80 Selecting previously unselected package gpgsm.
+#9 50.80 Preparing to unpack .../27-gpgsm_2.4.7-21+deb13u1+b3_amd64.deb ...
+#9 50.81 Unpacking gpgsm (2.4.7-21+deb13u1+b3) ...
+#9 50.87 Selecting previously unselected package gnupg.
+#9 50.87 Preparing to unpack .../28-gnupg_2.4.7-21+deb13u1_all.deb ...
+#9 50.88 Unpacking gnupg (2.4.7-21+deb13u1) ...
+#9 50.94 Selecting previously unselected package gnupg2.
+#9 50.94 Preparing to unpack .../29-gnupg2_2.4.7-21+deb13u1_all.deb ...
+#9 50.95 Unpacking gnupg2 (2.4.7-21+deb13u1) ...
+#9 51.00 Selecting previously unselected package gpg-wks-client.
+#9 51.00 Preparing to unpack .../30-gpg-wks-client_2.4.7-21+deb13u1+b3_amd64.deb ...
+#9 51.01 Unpacking gpg-wks-client (2.4.7-21+deb13u1+b3) ...
+#9 51.07 Selecting previously unselected package gpgv.
+#9 51.07 Preparing to unpack .../31-gpgv_2.4.7-21+deb13u1+b3_amd64.deb ...
+#9 51.08 Unpacking gpgv (2.4.7-21+deb13u1+b3) ...
+#9 51.14 Selecting previously unselected package libgpg-error-l10n.
+#9 51.14 Preparing to unpack .../32-libgpg-error-l10n_1.51-4_all.deb ...
+#9 51.15 Unpacking libgpg-error-l10n (1.51-4) ...
+#9 51.23 Selecting previously unselected package libgpm2:amd64.
+#9 51.23 Preparing to unpack .../33-libgpm2_1.20.7-11+b2_amd64.deb ...
+#9 51.25 Unpacking libgpm2:amd64 (1.20.7-11+b2) ...
+#9 51.32 Selecting previously unselected package libxext6:amd64.
+#9 51.32 Preparing to unpack .../34-libxext6_2%3a1.3.4-1+b3_amd64.deb ...
+#9 51.33 Unpacking libxext6:amd64 (2:1.3.4-1+b3) ...
+#9 51.40 Selecting previously unselected package libxmuu1:amd64.
+#9 51.40 Preparing to unpack .../35-libxmuu1_2%3a1.1.3-3+b4_amd64.deb ...
+#9 51.41 Unpacking libxmuu1:amd64 (2:1.1.3-3+b4) ...
+#9 51.47 Selecting previously unselected package libzip5:amd64.
+#9 51.47 Preparing to unpack .../36-libzip5_1.11.3-2_amd64.deb ...
+#9 51.48 Unpacking libzip5:amd64 (1.11.3-2) ...
+#9 51.53 Selecting previously unselected package zipcmp.
+#9 51.53 Preparing to unpack .../37-zipcmp_1.11.3-2_amd64.deb ...
+#9 51.54 Unpacking zipcmp (1.11.3-2) ...
+#9 51.59 Selecting previously unselected package zipmerge.
+#9 51.59 Preparing to unpack .../38-zipmerge_1.11.3-2_amd64.deb ...
+#9 51.60 Unpacking zipmerge (1.11.3-2) ...
+#9 51.65 Selecting previously unselected package ziptool.
+#9 51.65 Preparing to unpack .../39-ziptool_1.11.3-2_amd64.deb ...
+#9 51.66 Unpacking ziptool (1.11.3-2) ...
+#9 51.72 Selecting previously unselected package libzip-dev:amd64.
+#9 51.72 Preparing to unpack .../40-libzip-dev_1.11.3-2_amd64.deb ...
+#9 51.73 Unpacking libzip-dev:amd64 (1.11.3-2) ...
+#9 51.80 Selecting previously unselected package unzip.
+#9 51.81 Preparing to unpack .../41-unzip_6.0-29_amd64.deb ...
+#9 51.82 Unpacking unzip (6.0-29) ...
+#9 51.87 Selecting previously unselected package xauth.
+#9 51.87 Preparing to unpack .../42-xauth_1%3a1.1.2-1.1_amd64.deb ...
+#9 51.88 Unpacking xauth (1:1.1.2-1.1) ...
+#9 51.93 Selecting previously unselected package zip.
+#9 51.93 Preparing to unpack .../43-zip_3.0-15_amd64.deb ...
+#9 51.94 Unpacking zip (3.0-15) ...
+#9 52.02 Selecting previously unselected package gnupg-utils.
+#9 52.02 Preparing to unpack .../44-gnupg-utils_2.4.7-21+deb13u1+b3_amd64.deb ...
+#9 52.04 Unpacking gnupg-utils (2.4.7-21+deb13u1+b3) ...
+#9 52.17 Setting up libexpat1:amd64 (2.7.1-2) ...
+#9 52.20 Setting up libnpth0t64:amd64 (1.8-3) ...
+#9 52.23 Setting up apt-utils (3.0.3) ...
+#9 52.27 Setting up libgpm2:amd64 (1.20.7-11+b2) ...
+#9 52.31 Setting up libgpg-error0:amd64 (1.51-4) ...
+#9 52.35 Setting up libcurl4t64:amd64 (8.14.1-2+deb13u3) ...
+#9 52.38 Setting up libzip5:amd64 (1.11.3-2) ...
+#9 52.40 Setting up libcbor0.10:amd64 (0.10.2-2) ...
+#9 52.43 Setting up unzip (6.0-29) ...
+#9 52.46 Setting up libedit2:amd64 (3.1-20250104-1) ...
+#9 52.49 Setting up less (668-1) ...
+#9 52.54 Setting up libxext6:amd64 (2:1.3.4-1+b3) ...
+#9 52.58 Setting up libgcrypt20:amd64 (1.11.0-7+deb13u1) ...
+#9 52.61 Setting up zipmerge (1.11.3-2) ...
+#9 52.63 Setting up liberror-perl (0.17030-1) ...
+#9 52.65 Setting up zip (3.0-15) ...
+#9 52.68 Setting up gnupg-l10n (2.4.7-21+deb13u1) ...
+#9 52.71 Setting up libncursesw6:amd64 (6.5+20250216-2) ...
+#9 52.74 Setting up zipcmp (1.11.3-2) ...
+#9 52.76 Setting up gpgv (2.4.7-21+deb13u1+b3) ...
+#9 52.78 Setting up libassuan9:amd64 (3.0.2-2) ...
+#9 52.81 Setting up gpgconf (2.4.7-21+deb13u1+b3) ...
+#9 52.83 Setting up git-man (1:2.47.3-0+deb13u1) ...
+#9 52.85 Setting up libngtcp2-16:amd64 (1.11.0-1+deb13u1) ...
+#9 52.87 Setting up curl (8.14.1-2+deb13u3) ...
+#9 52.90 Setting up libfido2-1:amd64 (1.15.0-1+b1) ...
+#9 52.92 Setting up ziptool (1.11.3-2) ...
+#9 52.94 Setting up libgpg-error-l10n (1.51-4) ...
+#9 52.96 Setting up libxmuu1:amd64 (2:1.1.3-3+b4) ...
+#9 52.99 Setting up libngtcp2-crypto-gnutls8:amd64 (1.11.0-1+deb13u1) ...
+#9 53.01 Setting up libksba8:amd64 (1.6.7-2+b1) ...
+#9 53.04 Setting up pinentry-curses (1.3.1-2) ...
+#9 53.07 Setting up libzip-dev:amd64 (1.11.3-2) ...
+#9 53.09 Setting up gpg-agent (2.4.7-21+deb13u1+b3) ...
+#9 54.00 Setting up openssh-client (1:10.0p1-7+deb13u4) ...
+#9 54.26 Setting up gpgsm (2.4.7-21+deb13u1+b3) ...
+#9 54.28 Setting up libcurl3t64-gnutls:amd64 (8.14.1-2+deb13u3) ...
+#9 54.31 Setting up dirmngr (2.4.7-21+deb13u1+b3) ...
+#9 54.45 Setting up git (1:2.47.3-0+deb13u1) ...
+#9 54.48 Setting up xauth (1:1.1.2-1.1) ...
+#9 54.51 Setting up gpg (2.4.7-21+deb13u1+b3) ...
+#9 54.65 Setting up gnupg-utils (2.4.7-21+deb13u1+b3) ...
+#9 54.68 Setting up gpg-wks-client (2.4.7-21+deb13u1+b3) ...
+#9 54.71 Setting up gnupg (2.4.7-21+deb13u1) ...
+#9 54.73 Setting up gnupg2 (2.4.7-21+deb13u1) ...
+#9 54.76 Processing triggers for libc-bin (2.41-12+deb13u2) ...
+#9 54.95 + [ 8.2 = 7.3 ]
+#9 54.95 + [ 8.2 = 7.4 ]
+#9 54.95 + php -r echo PHP_MAJOR_VERSION;
+#9 54.97 + [ 8 = 8 ]
+#9 54.97 + docker-php-ext-configure zip
+#9 56.54 Configuring for:
+#9 56.54 PHP Api Version:         20220829
+#9 56.54 Zend Module Api No:      20220829
+#9 56.54 Zend Extension Api No:   420220829
+#9 57.41 checking for grep that handles long lines and -e... /usr/bin/grep
+#9 57.41 checking for egrep... /usr/bin/grep -E
+#9 57.41 checking for a sed that does not truncate output... /usr/bin/sed
+#9 57.44 checking for pkg-config... /usr/bin/pkg-config
+#9 57.45 checking pkg-config is at least version 0.9.0... yes
+#9 57.45 checking for cc... cc
+#9 57.49 checking whether the C compiler works... yes
+#9 57.60 checking for C compiler default output file name... a.out
+#9 57.60 checking for suffix of executables... 
+#9 57.64 checking whether we are cross compiling... no
+#9 57.71 checking for suffix of object files... o
+#9 57.73 checking whether the compiler supports GNU C... yes
+#9 57.75 checking whether cc accepts -g... yes
+#9 57.77 checking for cc option to enable C11 features... none needed
+#9 57.83 checking how to run the C preprocessor... cc -E
+#9 57.90 checking for egrep -e... (cached) /usr/bin/grep -E
+#9 57.90 checking for icc... no
+#9 57.91 checking for suncc... no
+#9 57.92 checking for system library directory... lib
+#9 57.92 checking if compiler supports -Wl,-rpath,... yes
+#9 57.97 checking build system type... x86_64-pc-linux-gnu
+#9 57.97 checking host system type... x86_64-pc-linux-gnu
+#9 57.97 checking target system type... x86_64-pc-linux-gnu
+#9 58.03 checking for PHP prefix... /usr/local
+#9 58.03 checking for PHP includes... -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib
+#9 58.03 checking for PHP extension directory... /usr/local/lib/php/extensions/no-debug-non-zts-20220829
+#9 58.03 checking for PHP installed headers prefix... /usr/local/include/php
+#9 58.03 checking if debug is enabled... no
+#9 58.06 checking if zts is enabled... no
+#9 58.09 checking for gawk... no
+#9 58.09 checking for nawk... nawk
+#9 58.09 checking if nawk is broken... no
+#9 58.09 checking for zip archive read/write support... yes, shared
+#9 58.10 checking for libzip >= 0.11 libzip != 1.3.1 libzip != 1.7.0... yes
+#9 58.11 checking for zip_file_set_mtime in -lzip... yes
+#9 58.18 checking for zip_file_set_encryption in -lzip... yes
+#9 58.28 checking for zip_libzip_version in -lzip... yes
+#9 58.38 checking for zip_register_progress_callback_with_state in -lzip... yes
+#9 58.51 checking for zip_register_cancel_callback_with_state in -lzip... yes
+#9 58.64 checking for zip_compression_method_supported in -lzip... yes
+#9 58.75 checking for a sed that does not truncate output... /usr/bin/sed
+#9 58.76 checking for ld used by cc... /usr/bin/ld
+#9 58.77 checking if the linker (/usr/bin/ld) is GNU ld... yes
+#9 58.78 checking for /usr/bin/ld option to reload object files... -r
+#9 58.78 checking for BSD-compatible nm... /usr/bin/nm -B
+#9 58.78 checking whether ln -s works... yes
+#9 58.78 checking how to recognize dependent libraries... pass_all
+#9 58.82 checking for stdio.h... yes
+#9 58.85 checking for stdlib.h... yes
+#9 58.92 checking for string.h... yes
+#9 59.02 checking for inttypes.h... yes
+#9 59.08 checking for stdint.h... yes
+#9 59.13 checking for strings.h... yes
+#9 59.20 checking for sys/stat.h... yes
+#9 59.28 checking for sys/types.h... yes
+#9 59.34 checking for unistd.h... yes
+#9 59.42 checking for dlfcn.h... yes
+#9 59.49 checking the maximum length of command line arguments... 1572864
+#9 59.50 checking command to parse /usr/bin/nm -B output from cc object... ok
+#9 59.61 checking for objdir... .libs
+#9 59.62 checking for ar... ar
+#9 59.62 checking for ranlib... ranlib
+#9 59.62 checking for strip... strip
+#9 59.70 checking if cc supports -fno-rtti -fno-exceptions... no
+#9 59.73 checking for cc option to produce PIC... -fPIC
+#9 59.73 checking if cc PIC flag -fPIC works... yes
+#9 59.77 checking if cc static flag -static works... yes
+#9 59.99 checking if cc supports -c -o file.o... yes
+#9 60.04 checking whether the cc linker (/usr/bin/ld -m elf_x86_64) supports shared libraries... yes
+#9 60.06 checking whether -lc should be explicitly linked in... no
+#9 60.10 checking dynamic linker characteristics... GNU/Linux ld.so
+#9 60.12 checking how to hardcode library paths into programs... immediate
+#9 60.12 checking whether stripping libraries is possible... yes
+#9 60.13 checking if libtool supports shared libraries... yes
+#9 60.13 checking whether to build shared libraries... yes
+#9 60.13 checking whether to build static libraries... no
+#9 60.37 
+#9 60.37 creating libtool
+#9 60.40 appending configuration tag "CXX" to libtool
+#9 60.53 configure: patching config.h.in
+#9 60.53 configure: creating ./config.status
+#9 60.62 config.status: creating config.h
+#9 60.67 + docker-php-ext-install zip
+#9 60.68 /bin/bash /usr/src/php/ext/zip/libtool --tag=CC --mode=compile cc -I. -I/usr/src/php/ext/zip -I/usr/src/php/ext/zip/include -I/usr/src/php/ext/zip/main -I/usr/src/php/ext/zip -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib  -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -DHAVE_CONFIG_H  -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -D_GNU_SOURCE    -DZEND_COMPILE_DL_EXT=1 -c /usr/src/php/ext/zip/php_zip.c -o php_zip.lo  -MMD -MF php_zip.dep -MT php_zip.lo
+#9 60.80 mkdir .libs
+#9 60.81  cc -I. -I/usr/src/php/ext/zip -I/usr/src/php/ext/zip/include -I/usr/src/php/ext/zip/main -I/usr/src/php/ext/zip -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -DHAVE_CONFIG_H -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -D_GNU_SOURCE -DZEND_COMPILE_DL_EXT=1 -c /usr/src/php/ext/zip/php_zip.c -MMD -MF php_zip.dep -MT php_zip.lo  -fPIC -DPIC -o .libs/php_zip.o
+#9 62.97 /bin/bash /usr/src/php/ext/zip/libtool --tag=CC --mode=compile cc -I. -I/usr/src/php/ext/zip -I/usr/src/php/ext/zip/include -I/usr/src/php/ext/zip/main -I/usr/src/php/ext/zip -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib  -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -DHAVE_CONFIG_H  -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -D_GNU_SOURCE    -DZEND_COMPILE_DL_EXT=1 -c /usr/src/php/ext/zip/zip_stream.c -o zip_stream.lo  -MMD -MF zip_stream.dep -MT zip_stream.lo
+#9 63.21  cc -I. -I/usr/src/php/ext/zip -I/usr/src/php/ext/zip/include -I/usr/src/php/ext/zip/main -I/usr/src/php/ext/zip -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -DHAVE_CONFIG_H -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -D_GNU_SOURCE -DZEND_COMPILE_DL_EXT=1 -c /usr/src/php/ext/zip/zip_stream.c -MMD -MF zip_stream.dep -MT zip_stream.lo  -fPIC -DPIC -o .libs/zip_stream.o
+#9 63.90 /bin/bash /usr/src/php/ext/zip/libtool --tag=CC --mode=link cc -shared -I/usr/src/php/ext/zip/include -I/usr/src/php/ext/zip/main -I/usr/src/php/ext/zip -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib  -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -DHAVE_CONFIG_H  -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -D_GNU_SOURCE  -Wl,-O1 -pie  -o zip.la -export-dynamic -avoid-version -prefer-pic -module -rpath /usr/src/php/ext/zip/modules  php_zip.lo zip_stream.lo -lzip
+#9 64.05 cc -shared  .libs/php_zip.o .libs/zip_stream.o  -lzip  -Wl,-O1 -Wl,-soname -Wl,zip.so -o .libs/zip.so
+#9 64.07 creating zip.la
+#9 64.08 (cd .libs && rm -f zip.la && ln -s ../zip.la zip.la)
+#9 64.08 /bin/bash /usr/src/php/ext/zip/libtool --tag=CC --mode=install cp ./zip.la /usr/src/php/ext/zip/modules
+#9 64.11 cp ./.libs/zip.so /usr/src/php/ext/zip/modules/zip.so
+#9 64.12 cp ./.libs/zip.lai /usr/src/php/ext/zip/modules/zip.la
+#9 64.14 PATH="$PATH:/sbin" ldconfig -n /usr/src/php/ext/zip/modules
+#9 64.14 ----------------------------------------------------------------------
+#9 64.14 Libraries have been installed in:
+#9 64.14    /usr/src/php/ext/zip/modules
+#9 64.14 
+#9 64.14 If you ever happen to want to link against installed libraries
+#9 64.14 in a given directory, LIBDIR, you must either use libtool, and
+#9 64.14 specify the full pathname of the library, or use the `-LLIBDIR'
+#9 64.14 flag during linking and do at least one of the following:
+#9 64.14    - add LIBDIR to the `LD_LIBRARY_PATH' environment variable
+#9 64.14      during execution
+#9 64.14    - add LIBDIR to the `LD_RUN_PATH' environment variable
+#9 64.14      during linking
+#9 64.14    - use the `-Wl,--rpath -Wl,LIBDIR' linker flag
+#9 64.14    - have your system administrator add LIBDIR to `/etc/ld.so.conf'
+#9 64.14 
+#9 64.14 See any operating system documentation about shared libraries for
+#9 64.14 more information, such as the ld(1) and ld.so(8) manual pages.
+#9 64.14 ----------------------------------------------------------------------
+#9 64.14 
+#9 64.15 Build complete.
+#9 64.15 Don't forget to run 'make test'.
+#9 64.15 
+#9 64.17 + strip --strip-all modules/zip.so
+#9 64.20 Installing shared extensions:     /usr/local/lib/php/extensions/no-debug-non-zts-20220829/
+#9 64.29 find . -name \*.gcno -o -name \*.gcda | xargs rm -f
+#9 64.30 find . -name \*.lo -o -name \*.o -o -name \*.dep | xargs rm -f
+#9 64.30 find . -name \*.la -o -name \*.a | xargs rm -f
+#9 64.31 find . -name \*.so | xargs rm -f
+#9 64.31 find . -name .libs -a -type d|xargs rm -rf
+#9 64.32 rm -f libphp.la      modules/* libs/*
+#9 64.32 rm -f ext/opcache/jit/zend_jit_x86.c
+#9 64.32 rm -f ext/opcache/jit/zend_jit_arm64.c
+#9 64.32 rm -f ext/opcache/minilua
+#9 64.70 + php -m
+#9 64.70 + grep -q zip
+#9 DONE 64.8s
+
+#10 [ 5/84] RUN if [ false = true ]; then   apt-get -yqq install libbz2-dev;   docker-php-ext-install bz2 ;fi
+#10 DONE 0.4s
+
+#11 [ 6/84] RUN if [ false = true ]; then   apt-get install -yqq libenchant-dev;   docker-php-ext-install enchant;   php -m | grep -oiE '^enchant$'; fi
+#11 DONE 0.4s
+
+#12 [ 7/84] RUN if [ false = true ]; then 	  apt-get install -yqq libgmp-dev &&     if [ $(php -r "echo PHP_MAJOR_VERSION;") = "5" ]; then       ln -s /usr/include/x86_64-linux-gnu/gmp.h /usr/include/gmp.h     ;fi &&     docker-php-ext-install gmp ;fi
+#12 DONE 0.4s
+
+#13 [ 8/84] RUN if [ false = true ]; then       apt-get -yq install libgpgme-dev;       pecl install gnupg;       docker-php-ext-enable gnupg;       php -m | grep -q 'gnupg';     fi
+#13 DONE 0.4s
+
+#14 [ 9/84] RUN if [ false = true ]; then     apt-get -y install libssh2-1-dev &&     if [ $(php -r "echo PHP_MAJOR_VERSION;") = "5" ]; then         pecl install -a ssh2-0.13;     else         pecl install -a ssh2-1.3.1;     fi &&     docker-php-ext-enable ssh2 ;fi
+#14 DONE 0.4s
+
+#15 [10/84] RUN if [ false = true ]; then     apt-get install -yqq libfaketime ;fi
+#15 DONE 0.4s
+
+#16 [11/84] RUN if [ false = true ]; then     rm /etc/apt/preferences.d/no-debian-php &&     apt-get -y install libxml2-dev php-soap &&     docker-php-ext-install soap ;fi
+#16 DONE 0.4s
+
+#17 [12/84] RUN if [ false = true ]; then     apt-get -y install libxslt-dev &&     docker-php-ext-install xsl ;fi
+#17 DONE 0.3s
+
+#18 [13/84] RUN if [ false = true ]; then     docker-php-ext-install pgsql ;fi
+#18 DONE 0.4s
+
+#19 [14/84] RUN if [ false = true ]; then     apt-get install -yqq gnupg     && . /etc/os-release     && echo "deb http://apt.postgresql.org/pub/repos/apt $VERSION_CODENAME-pgdg main" > /etc/apt/sources.list.d/pgdg.list     && curl -sL https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -     && apt-get update -yqq     && apt-get install -yqq postgresql-client-15 postgis;     if [ false = true ]; then       apt-get install -yqq postgis;     fi     && apt-get purge -yqq gnupg ;fi
+#19 DONE 0.4s
+
+#20 [15/84] RUN if [ false = true ]; then   if [ $(php -r "echo PHP_MAJOR_VERSION;") = "8" ] || { [ $(php -r "echo PHP_MAJOR_VERSION;") = "7" ] && { [ $(php -r "echo PHP_MINOR_VERSION;") = "4" ] || [ $(php -r "echo PHP_MINOR_VERSION;") = "3" ] ;} ;}; then     if [ $(php -r "echo PHP_MAJOR_VERSION;") = "8" ]; then       pecl install xdebug-3.5.0;     else       pecl install xdebug-3.1.6;     fi;   else     if [ $(php -r "echo PHP_MAJOR_VERSION;") = "5" ]; then       pecl install xdebug-2.5.5;     else       if [ $(php -r "echo PHP_MINOR_VERSION;") = "0" ]; then         pecl install xdebug-2.9.0;       else         pecl install xdebug-2.9.8;       fi     fi   fi &&   docker-php-ext-enable xdebug ;fi
+#20 DONE 0.4s
+
+#21 [16/84] COPY ./xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
+#21 DONE 0.1s
+
+#22 [17/84] RUN if [ $(php -r "echo PHP_MAJOR_VERSION;") = "8" ] || { [ $(php -r "echo PHP_MAJOR_VERSION;") = "7" ] && { [ $(php -r "echo PHP_MINOR_VERSION;") = "4" ] || [ $(php -r "echo PHP_MINOR_VERSION;") = "3" ] ;} ;}; then   sed -i "s/xdebug.remote_host=/xdebug.client_host=/" /usr/local/etc/php/conf.d/xdebug.ini &&   sed -i "s/xdebug.remote_connect_back=0/xdebug.discover_client_host=false/" /usr/local/etc/php/conf.d/xdebug.ini &&   sed -i "s/xdebug.remote_port=9000/xdebug.client_port=9000/" /usr/local/etc/php/conf.d/xdebug.ini &&   sed -i "s/xdebug.profiler_enable=0/; xdebug.profiler_enable=0/" /usr/local/etc/php/conf.d/xdebug.ini &&   sed -i "s/xdebug.profiler_output_dir=/xdebug.output_dir=/" /usr/local/etc/php/conf.d/xdebug.ini &&   sed -i "s/xdebug.remote_mode=req/; xdebug.remote_mode=req/" /usr/local/etc/php/conf.d/xdebug.ini &&   sed -i "s/xdebug.remote_autostart=0/xdebug.start_with_request=yes/" /usr/local/etc/php/conf.d/xdebug.ini &&   sed -i "s/xdebug.remote_enable=0/xdebug.mode=debug/" /usr/local/etc/php/conf.d/xdebug.ini ;else   sed -i "s/xdebug.remote_autostart=0/xdebug.remote_autostart=1/" /usr/local/etc/php/conf.d/xdebug.ini &&   sed -i "s/xdebug.remote_enable=0/xdebug.remote_enable=1/" /usr/local/etc/php/conf.d/xdebug.ini ;fi
+#22 DONE 0.5s
+
+#23 [18/84] RUN sed -i "s/xdebug.cli_color=0/xdebug.cli_color=1/" /usr/local/etc/php/conf.d/xdebug.ini
+#23 DONE 0.5s
+
+#24 [19/84] RUN if [ false = true ]; then   if [ $(php -r "echo PHP_MAJOR_VERSION;") = "8" ]  || { [ $(php -r "echo PHP_MAJOR_VERSION;") = "7" ] && [ $(php -r "echo PHP_MINOR_VERSION;") != "0" ]; }; then     pecl install pcov &&     docker-php-ext-enable pcov   ;fi ;fi
+#24 DONE 0.4s
+
+#25 [20/84] RUN if [ false = true ]; then     apt-get install -yqq --force-yes php8.2-phpdbg ;fi
+#25 DONE 0.4s
+
+#26 [21/84] RUN if [ false = false -a false = true ]; then     version=$(php -r "echo PHP_MAJOR_VERSION.PHP_MINOR_VERSION;")     && curl -A "Docker" -o /tmp/blackfire-probe.tar.gz -D - -L -s https://blackfire.io/api/v1/releases/probe/php/linux/amd64/$version     && tar zxpf /tmp/blackfire-probe.tar.gz -C /tmp     && mv /tmp/blackfire-*.so $(php -r "echo ini_get('extension_dir');")/blackfire.so     && printf "extension=blackfire.so\nblackfire.agent_socket=tcp://blackfire:8707\n" > /usr/local/etc/php/conf.d/blackfire.ini ;fi
+#26 DONE 0.5s
+
+#27 [22/84] RUN if [ false = true ]; then     if [ $(php -r "echo PHP_MAJOR_VERSION;") = "5" ]; then       pecl install -o -f redis-4.3.0;     elif [ $(php -r "echo PHP_MAJOR_VERSION;") = "7" ] && { [ $(php -r "echo PHP_MINOR_VERSION;") = "0" ] || [ $(php -r "echo PHP_MINOR_VERSION;") = "1" ] ;}; then       pecl install -o -f redis-5.3.7;     elif [ $(php -r "echo PHP_MAJOR_VERSION;") = "7" ] && { [ $(php -r "echo PHP_MINOR_VERSION;") = "2" ] || [ $(php -r "echo PHP_MINOR_VERSION;") = "3" ] ;}; then       pecl install -o -f redis-6.0.2;     else       pecl install -o -f redis;     fi     && rm -rf /tmp/pear     && docker-php-ext-enable redis ;fi
+#27 DONE 0.5s
+
+#28 [23/84] RUN set -eux;     if [ false = true ]; then       if   [ $(php -r "echo PHP_VERSION_ID - PHP_RELEASE_VERSION;") = "50600" ]; then         pecl install swoole-2.0.10;       elif [ $(php -r "echo PHP_VERSION_ID - PHP_RELEASE_VERSION;") = "70000" ]; then         pecl install swoole-4.3.5;       elif [ $(php -r "echo PHP_VERSION_ID - PHP_RELEASE_VERSION;") = "70100" ]; then         pecl install swoole-4.5.11;       elif [ $(php -r "echo PHP_MAJOR_VERSION;") = "7" ]; then         pecl install swoole-4.8.12;       elif [ $(php -r "echo PHP_MAJOR_VERSION;") = "8" ] && [ $(php -r "echo PHP_MINOR_VERSION;") = "0" ]; then         pecl install swoole-5.1.2;       else         pecl install swoole;       fi;       docker-php-ext-enable swoole;       php -m | grep -q 'swoole';     fi
+#28 0.423 + [ false = true ]
+#28 DONE 0.4s
+
+#29 [24/84] RUN if [ false = true ]; then     if [ $(php -r "echo PHP_MAJOR_VERSION;") = "7" ]; then       pecl install taint &&       docker-php-ext-enable taint &&       php -m | grep -q 'taint';     fi ;fi
+#29 DONE 0.4s
+
+#30 [25/84] RUN if [ true = true ]; then     if [ $(php -r "echo PHP_MAJOR_VERSION;") = "5" ]; then       pecl install mongo;       docker-php-ext-enable mongo;       php -m | grep -oiE '^mongo$';     else       if [ $(php -r "echo PHP_MAJOR_VERSION;") = "7" ]; then         if [ $(php -r "echo PHP_MINOR_VERSION;") = "0" ] || [ $(php -r "echo PHP_MINOR_VERSION;") = "1" ]; then           pecl install mongodb-1.9.2;         else           if [ $(php -r "echo PHP_MINOR_VERSION;") = "4" ]; then             pecl install mongodb-1.20.1;           else             pecl install mongodb-1.16.2;           fi;         fi;       else         if [ $(php -r "echo PHP_MAJOR_VERSION;") = "8" ] && [ $(php -r "echo PHP_MINOR_VERSION;") = "0" ]; then             pecl install mongodb-1.20.1;         else             pecl install mongodb-1.15.3;         fi;       fi;       docker-php-ext-enable mongodb;       php -m | grep -oiE '^mongodb$';     fi; fi
+#30 0.795 No releases available for package "pecl.php.net/mongodb"
+#30 0.795 install failed
+#30 0.820 error: 'mongodb' does not exist
+#30 0.820 
+#30 0.820 usage: /usr/local/bin/docker-php-ext-enable [options] module-name [module-name ...]
+#30 0.820    ie: /usr/local/bin/docker-php-ext-enable gd mysqli
+#30 0.820        /usr/local/bin/docker-php-ext-enable pdo pdo_mysql
+#30 0.820        /usr/local/bin/docker-php-ext-enable --ini-name 0-apc.ini apcu apc
+#30 0.820 
+#30 0.820 Possible values for module-name:
+#30 0.833 gd.so opcache.so pdo_mysql.so pdo_pgsql.so sodium.so zip.so
+#30 0.833 
+#30 0.833 Some of the above modules are already compiled into PHP; please check
+#30 0.833 the output of "php -i" to see which modules are already loaded.
+#30 ERROR: process "/bin/sh -c if [ ${INSTALL_MONGO} = true ]; then     if [ $(php -r \"echo PHP_MAJOR_VERSION;\") = \"5\" ]; then       pecl install mongo;       docker-php-ext-enable mongo;       php -m | grep -oiE '^mongo$';     else       if [ $(php -r \"echo PHP_MAJOR_VERSION;\") = \"7\" ]; then         if [ $(php -r \"echo PHP_MINOR_VERSION;\") = \"0\" ] || [ $(php -r \"echo PHP_MINOR_VERSION;\") = \"1\" ]; then           pecl install mongodb-1.9.2;         else           if [ $(php -r \"echo PHP_MINOR_VERSION;\") = \"4\" ]; then             pecl install mongodb-1.20.1;           else             pecl install mongodb-1.16.2;           fi;         fi;       else         if [ $(php -r \"echo PHP_MAJOR_VERSION;\") = \"8\" ] && [ $(php -r \"echo PHP_MINOR_VERSION;\") = \"0\" ]; then             pecl install mongodb-1.20.1;         else             pecl install mongodb-1.15.3;         fi;       fi;       docker-php-ext-enable mongodb;       php -m | grep -oiE '^mongodb$';     fi; fi" did not complete successfully: exit code: 1
+------
+ > [25/84] RUN if [ true = true ]; then     if [ $(php -r "echo PHP_MAJOR_VERSION;") = "5" ]; then       pecl install mongo;       docker-php-ext-enable mongo;       php -m | grep -oiE '^mongo$';     else       if [ $(php -r "echo PHP_MAJOR_VERSION;") = "7" ]; then         if [ $(php -r "echo PHP_MINOR_VERSION;") = "0" ] || [ $(php -r "echo PHP_MINOR_VERSION;") = "1" ]; then           pecl install mongodb-1.9.2;         else           if [ $(php -r "echo PHP_MINOR_VERSION;") = "4" ]; then             pecl install mongodb-1.20.1;           else             pecl install mongodb-1.16.2;           fi;         fi;       else         if [ $(php -r "echo PHP_MAJOR_VERSION;") = "8" ] && [ $(php -r "echo PHP_MINOR_VERSION;") = "0" ]; then             pecl install mongodb-1.20.1;         else             pecl install mongodb-1.15.3;         fi;       fi;       docker-php-ext-enable mongodb;       php -m | grep -oiE '^mongodb$';     fi; fi:
+0.820 usage: /usr/local/bin/docker-php-ext-enable [options] module-name [module-name ...]
+0.820    ie: /usr/local/bin/docker-php-ext-enable gd mysqli
+0.820        /usr/local/bin/docker-php-ext-enable pdo pdo_mysql
+0.820        /usr/local/bin/docker-php-ext-enable --ini-name 0-apc.ini apcu apc
+0.820 
+0.820 Possible values for module-name:
+0.833 gd.so opcache.so pdo_mysql.so pdo_pgsql.so sodium.so zip.so
+0.833 
+0.833 Some of the above modules are already compiled into PHP; please check
+0.833 the output of "php -i" to see which modules are already loaded.
+------
+Dockerfile:374
+
+--------------------
+
+ 373 |     
+
+ 374 | >>> RUN if [ ${INSTALL_MONGO} = true ]; then \
+
+ 375 | >>>     # Install the mongodb extension
+
+ 376 | >>>     if [ $(php -r "echo PHP_MAJOR_VERSION;") = "5" ]; then \
+
+ 377 | >>>       pecl install mongo; \
+
+ 378 | >>>       docker-php-ext-enable mongo; \
+
+ 379 | >>>       php -m | grep -oiE '^mongo$'; \
+
+ 380 | >>>     else \
+
+ 381 | >>>       if [ $(php -r "echo PHP_MAJOR_VERSION;") = "7" ]; then \
+
+ 382 | >>>         if [ $(php -r "echo PHP_MINOR_VERSION;") = "0" ] || [ $(php -r "echo PHP_MINOR_VERSION;") = "1" ]; then \
+
+ 383 | >>>           pecl install mongodb-1.9.2; \
+
+ 384 | >>>         else \
+
+ 385 | >>>           if [ $(php -r "echo PHP_MINOR_VERSION;") = "4" ]; then \
+
+ 386 | >>>             pecl install mongodb-1.20.1; \
+
+ 387 | >>>           else \
+
+ 388 | >>>             pecl install mongodb-1.16.2; \
+
+ 389 | >>>           fi; \
+
+ 390 | >>>         fi; \
+
+ 391 | >>>       else \
+
+ 392 | >>>         if [ $(php -r "echo PHP_MAJOR_VERSION;") = "8" ] && [ $(php -r "echo PHP_MINOR_VERSION;") = "0" ]; then \
+
+ 393 | >>>             pecl install mongodb-1.20.1; \
+
+ 394 | >>>         else \
+
+ 395 | >>>             pecl install mongodb-1.15.3; \
+
+ 396 | >>>         fi; \
+
+ 397 | >>>       fi; \
+
+ 398 | >>>       docker-php-ext-enable mongodb; \
+
+ 399 | >>>       php -m | grep -oiE '^mongodb$'; \
+
+ 400 | >>>     fi; \
+
+ 401 | >>> fi
+
+ 402 |     
+
+--------------------
+
+failed to solve: process "/bin/sh -c if [ ${INSTALL_MONGO} = true ]; then     if [ $(php -r \"echo PHP_MAJOR_VERSION;\") = \"5\" ]; then       pecl install mongo;       docker-php-ext-enable mongo;       php -m | grep -oiE '^mongo$';     else       if [ $(php -r \"echo PHP_MAJOR_VERSION;\") = \"7\" ]; then         if [ $(php -r \"echo PHP_MINOR_VERSION;\") = \"0\" ] || [ $(php -r \"echo PHP_MINOR_VERSION;\") = \"1\" ]; then           pecl install mongodb-1.9.2;         else           if [ $(php -r \"echo PHP_MINOR_VERSION;\") = \"4\" ]; then             pecl install mongodb-1.20.1;           else             pecl install mongodb-1.16.2;           fi;         fi;       else         if [ $(php -r \"echo PHP_MAJOR_VERSION;\") = \"8\" ] && [ $(php -r \"echo PHP_MINOR_VERSION;\") = \"0\" ]; then             pecl install mongodb-1.20.1;         else             pecl install mongodb-1.15.3;         fi;       fi;       docker-php-ext-enable mongodb;       php -m | grep -oiE '^mongodb$';     fi; fi" did not complete successfully: exit code: 1
+

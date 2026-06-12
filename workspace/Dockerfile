@@ -806,6 +806,7 @@ RUN if [ "${INSTALL_NODE}" = "true" ]; then \
     # Install nvm (A Node Version Manager)
     mkdir -p $NVM_DIR && \
     if [ "${NVM_INSTALL_CURL_INSECURE}" = "true" ]; then \
+      export GIT_SSL_NO_VERIFY=true && \
       curl -k -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash; \
     else \
       curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash; \
